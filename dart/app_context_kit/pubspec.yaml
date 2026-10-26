@@ -1,0 +1,11 @@
+name: app_context_kit
+description: "App Context Kit (Dart half): app manifest, context resolution, config, roster and a Venue session."
+version: 0.0.1
+publish_to: none
+environment:
+  sdk: ^3.0.0
+dependencies:
+  crypto: ^3.0.0
+dev_dependencies:
+  test: ^1.24.0
+  lints: ^4.0.0

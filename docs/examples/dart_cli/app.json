@@ -1,0 +1,7 @@
+{
+  "id": "dev.example.hello",
+  "name": "Hello",
+  "version": "0.1.0",
+  "envPrefix": "HELLO",
+  "venue": { "mode": "off" }
+}

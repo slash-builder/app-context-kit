@@ -1,0 +1,9 @@
+.dart_tool/
+build/
+target/
+**/doc/api/
+*.iml
+.flutter-plugins*
+.packages
+pubspec.lock
+.DS_Store

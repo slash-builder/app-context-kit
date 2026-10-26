@@ -1,0 +1,406 @@
+[
+ {
+  "name": "minimal",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "valid": true,
+  "defaults": {
+   "kits": [],
+   "venueMode": "auto",
+   "venueConsumer": "calc"
+  }
+ },
+ {
+  "name": "full",
+  "manifest": {
+   "id": "com.slashbuilder.demo.render-queue",
+   "name": "Demo",
+   "version": "0.1.0",
+   "kits": [
+    "venue",
+    "storage"
+   ],
+   "envPrefix": "RQ",
+   "venue": {
+    "mode": "on",
+    "consumer": "rq-app"
+   }
+  },
+  "valid": true,
+  "defaults": {
+   "kits": [
+    "venue",
+    "storage"
+   ],
+   "venueMode": "on",
+   "venueConsumer": "rq-app"
+  }
+ },
+ {
+  "name": "venue-off",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "venue": {
+    "mode": "off"
+   }
+  },
+  "valid": true,
+  "defaults": {
+   "kits": [],
+   "venueMode": "off",
+   "venueConsumer": "calc"
+  }
+ },
+ {
+  "name": "not-an-object",
+  "manifest": [
+   1,
+   2
+  ],
+  "valid": false,
+  "error": "not-object"
+ },
+ {
+  "name": "id-missing",
+  "manifest": {
+   "name": "x",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-id"
+ },
+ {
+  "name": "id-uppercase",
+  "manifest": {
+   "id": "Dev.Demo.Calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-id"
+ },
+ {
+  "name": "id-one-segment",
+  "manifest": {
+   "id": "calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-id"
+ },
+ {
+  "name": "id-leading-digit-segment",
+  "manifest": {
+   "id": "dev.1demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-id"
+ },
+ {
+  "name": "id-underscore",
+  "manifest": {
+   "id": "com.slashbuilder.demo.my_app",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-id"
+ },
+ {
+  "name": "name-blank",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "   ",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-name"
+ },
+ {
+  "name": "name-not-string",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": 5,
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-name"
+ },
+ {
+  "name": "version-two-parts",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1"
+  },
+  "valid": false,
+  "error": "bad-version"
+ },
+ {
+  "name": "version-prerelease",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0-beta"
+  },
+  "valid": false,
+  "error": "bad-version"
+ },
+ {
+  "name": "kits-not-list",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "kits": "venue"
+  },
+  "valid": false,
+  "error": "bad-kits"
+ },
+ {
+  "name": "kit-uppercase",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "kits": [
+    "Venue"
+   ]
+  },
+  "valid": false,
+  "error": "bad-kits"
+ },
+ {
+  "name": "kit-not-string",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "kits": [
+    3
+   ]
+  },
+  "valid": false,
+  "error": "bad-kits"
+ },
+ {
+  "name": "kit-duplicate",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "kits": [
+    "venue",
+    "venue"
+   ]
+  },
+  "valid": false,
+  "error": "duplicate-kit"
+ },
+ {
+  "name": "prefix-lowercase",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "envPrefix": "calc"
+  },
+  "valid": false,
+  "error": "bad-prefix"
+ },
+ {
+  "name": "venue-not-object",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "venue": "auto"
+  },
+  "valid": false,
+  "error": "bad-venue"
+ },
+ {
+  "name": "venue-mode-unknown",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "venue": {
+    "mode": "maybe"
+   }
+  },
+  "valid": false,
+  "error": "bad-venue"
+ },
+ {
+  "name": "venue-consumer-uppercase",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "venue": {
+    "consumer": "Calc"
+   }
+  },
+  "valid": false,
+  "error": "bad-venue"
+ },
+ {
+  "name": "source-not-json",
+  "source": "{not json",
+  "valid": false,
+  "error": "not-json"
+ },
+ {
+  "name": "source-array",
+  "source": "[1, 2]",
+  "valid": false,
+  "error": "not-object"
+ },
+ {
+  "name": "source-null",
+  "source": "null",
+  "valid": false,
+  "error": "not-object"
+ },
+ {
+  "name": "source-ok",
+  "source": "{\"id\":\"com.slashbuilder.demo.calc\",\"name\":\"Demo\",\"version\":\"0.1.0\"}",
+  "valid": true,
+  "defaults": {
+   "kits": [],
+   "venueMode": "auto",
+   "venueConsumer": "calc"
+  }
+ },
+ {
+  "name": "id-trailing-newline",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc\n",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-id"
+ },
+ {
+  "name": "version-trailing-newline",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "1.0.0\n"
+  },
+  "valid": false,
+  "error": "bad-version"
+ },
+ {
+  "name": "name-only-ascii-whitespace",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "\t \r\n",
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-name"
+ },
+ {
+  "name": "name-bom-counts-as-content",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "\ufeff",
+   "version": "0.1.0"
+  },
+  "valid": true,
+  "defaults": {
+   "kits": [],
+   "venueMode": "auto",
+   "venueConsumer": "calc"
+  }
+ },
+ {
+  "name": "name-null",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": null,
+   "version": "0.1.0"
+  },
+  "valid": false,
+  "error": "bad-name"
+ },
+ {
+  "name": "kits-null",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "kits": null
+  },
+  "valid": false,
+  "error": "bad-kits"
+ },
+ {
+  "name": "prefix-null",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "envPrefix": null
+  },
+  "valid": false,
+  "error": "bad-prefix"
+ },
+ {
+  "name": "venue-null",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "venue": null
+  },
+  "valid": false,
+  "error": "bad-venue"
+ },
+ {
+  "name": "bad-kit-beats-duplicate",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0",
+   "kits": [
+    "venue",
+    "venue",
+    "Bad"
+   ]
+  },
+  "valid": false,
+  "error": "bad-kits"
+ },
+ {
+  "name": "first-failure-wins",
+  "manifest": {
+   "id": "BAD",
+   "name": "",
+   "version": "x"
+  },
+  "valid": false,
+  "error": "bad-id"
+ },
+ {
+  "name": "name-before-version",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "",
+   "version": "x"
+  },
+  "valid": false,
+  "error": "bad-name"
+ }
+]

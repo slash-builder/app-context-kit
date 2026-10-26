@@ -1,0 +1,20 @@
+name: app_context_kit_flutter
+description: "App Context Kit (Flutter companion): guarded exit, manifest asset loading, mode badge, notes banner and widget-test helpers."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  app_context_kit:
+    path: ../app_context_kit
+  # Only lib/testing.dart imports this; an app that never imports that file does not link it into a release build.
+  flutter_test:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^6.0.0

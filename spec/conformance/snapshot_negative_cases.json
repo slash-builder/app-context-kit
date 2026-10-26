@@ -1,0 +1,554 @@
+[
+ {
+  "name": "not-json",
+  "error": "not-json",
+  "source": "{nope"
+ },
+ {
+  "name": "not-an-object",
+  "error": "not-object",
+  "snapshot": [
+   1,
+   2
+  ]
+ },
+ {
+  "name": "schema-missing",
+  "error": "missing-field",
+  "field": "schema",
+  "snapshot": {
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "schema-2",
+  "error": "unknown-schema",
+  "snapshot": {
+   "schema": 2,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "schema-0",
+  "error": "unknown-schema",
+  "snapshot": {
+   "schema": 0,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "schema-as-text",
+  "error": "unknown-schema",
+  "snapshot": {
+   "schema": "1",
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "app-id-missing",
+  "error": "missing-field",
+  "field": "appId",
+  "snapshot": {
+   "schema": 1,
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "instance-missing",
+  "error": "missing-field",
+  "field": "instance",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "dirs-missing",
+  "error": "missing-field",
+  "field": "dirs",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "dirs-data-missing",
+  "error": "missing-field",
+  "field": "dirs.data",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "dirs-runtime-missing",
+  "error": "missing-field",
+  "field": "dirs.runtime",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "roster-missing",
+  "error": "missing-field",
+  "field": "roster",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   }
+  }
+ },
+ {
+  "name": "missing-beats-bad",
+  "error": "missing-field",
+  "field": "roster",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "fake",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   }
+  }
+ },
+ {
+  "name": "unknown-top-level-field",
+  "error": "unknown-field",
+  "field": "token",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster",
+   "token": "secret"
+  }
+ },
+ {
+  "name": "unknown-dirs-field",
+  "error": "unknown-field",
+  "field": "dirs.logs",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime",
+    "logs": "/a/logs"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "dirs-not-an-object",
+  "error": "bad-field",
+  "field": "dirs",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": "/a",
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "app-id-not-reverse-dns",
+  "error": "bad-field",
+  "field": "appId",
+  "snapshot": {
+   "schema": 1,
+   "appId": "Notes",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "app-id-one-segment",
+  "error": "bad-field",
+  "field": "appId",
+  "snapshot": {
+   "schema": 1,
+   "appId": "notes",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "instance-uppercase",
+  "error": "bad-field",
+  "field": "instance",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0A1B2C3D",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "instance-too-short",
+  "error": "bad-field",
+  "field": "instance",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "mode-unknown",
+  "error": "bad-field",
+  "field": "mode",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "fake",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "scratch-not-a-bool",
+  "error": "bad-field",
+  "field": "scratch",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": "yes",
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "data-not-a-string",
+  "error": "bad-field",
+  "field": "dirs.data",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": 5,
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "config-empty",
+  "error": "bad-field",
+  "field": "dirs.config",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "data-relative",
+  "error": "relative-path",
+  "field": "dirs.data",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "config-dot-relative",
+  "error": "relative-path",
+  "field": "dirs.config",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "./config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "state-parent-relative",
+  "error": "relative-path",
+  "field": "dirs.state",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "../state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "cache-drive-relative",
+  "error": "relative-path",
+  "field": "dirs.cache",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "C:cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "runtime-bare-drive",
+  "error": "relative-path",
+  "field": "dirs.runtime",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "C:"
+   },
+   "roster": "/a/roster"
+  }
+ },
+ {
+  "name": "roster-relative",
+  "error": "relative-path",
+  "field": "roster",
+  "snapshot": {
+   "schema": 1,
+   "appId": "com.slashbuilder.demo.notes-rust",
+   "instance": "0a1b2c3d",
+   "mode": "real",
+   "scratch": false,
+   "dirs": {
+    "data": "/a/data",
+    "config": "/a/config",
+    "state": "/a/state",
+    "cache": "/a/cache",
+    "runtime": "/a/runtime"
+   },
+   "roster": "roster"
+  }
+ }
+]

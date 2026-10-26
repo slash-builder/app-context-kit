@@ -1,0 +1,628 @@
+[
+ {
+  "name": "linux-defaults",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {},
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "linux-xdg",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "XDG_DATA_HOME": "/x/data",
+   "XDG_CONFIG_HOME": "/x/config",
+   "XDG_STATE_HOME": "/x/state",
+   "XDG_CACHE_HOME": "/x/cache",
+   "XDG_RUNTIME_DIR": "/run/user/1000"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/x/data/com.slashbuilder.demo.calc",
+    "config": "/x/config/com.slashbuilder.demo.calc",
+    "state": "/x/state/com.slashbuilder.demo.calc",
+    "cache": "/x/cache/com.slashbuilder.demo.calc",
+    "runtime": "/run/user/1000/com.slashbuilder.demo.calc"
+   },
+   "roster": "/run/user/1000/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "linux-trailing-slashes",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "XDG_DATA_HOME": "/x/data/",
+   "XDG_RUNTIME_DIR": "/run/user/1000/"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/x/data/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/run/user/1000/com.slashbuilder.demo.calc"
+   },
+   "roster": "/run/user/1000/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "macos-defaults",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "macos",
+  "home": "/Users/user",
+  "env": {
+   "TMPDIR": "/var/folders/ab/T/"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/Users/user/Library/Application Support/com.slashbuilder.demo.calc/data",
+    "config": "/Users/user/Library/Preferences/com.slashbuilder.demo.calc",
+    "state": "/Users/user/Library/Application Support/com.slashbuilder.demo.calc/state",
+    "cache": "/Users/user/Library/Caches/com.slashbuilder.demo.calc",
+    "runtime": "/var/folders/ab/T/com.slashbuilder.demo.calc"
+   },
+   "roster": "/var/folders/ab/T/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "macos-no-tmpdir",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "macos",
+  "home": "/Users/user",
+  "env": {},
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/Users/user/Library/Application Support/com.slashbuilder.demo.calc/data",
+    "config": "/Users/user/Library/Preferences/com.slashbuilder.demo.calc",
+    "state": "/Users/user/Library/Application Support/com.slashbuilder.demo.calc/state",
+    "cache": "/Users/user/Library/Caches/com.slashbuilder.demo.calc",
+    "runtime": "/tmp/com.slashbuilder.demo.calc"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "windows-defaults",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "windows",
+  "home": "C:\\Users\\user",
+  "env": {
+   "LOCALAPPDATA": "C:\\Users\\user\\AppData\\Local",
+   "APPDATA": "C:\\Users\\user\\AppData\\Roaming",
+   "TEMP": "C:\\Users\\user\\AppData\\Local\\Temp\\"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "C:\\Users\\user\\AppData\\Local\\com.slashbuilder.demo.calc\\data",
+    "config": "C:\\Users\\user\\AppData\\Roaming\\com.slashbuilder.demo.calc",
+    "state": "C:\\Users\\user\\AppData\\Local\\com.slashbuilder.demo.calc\\state",
+    "cache": "C:\\Users\\user\\AppData\\Local\\com.slashbuilder.demo.calc\\cache",
+    "runtime": "C:\\Users\\user\\AppData\\Local\\Temp\\com.slashbuilder.demo.calc"
+   },
+   "roster": "C:\\Users\\user\\AppData\\Local\\Temp\\app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "windows-missing-env",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "windows",
+  "home": "C:\\Users\\user",
+  "env": {},
+  "error": "missing-env"
+ },
+ {
+  "name": "per-dir-override",
+  "manifest": {
+   "id": "com.slashbuilder.demo.stopwatch",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "STOPWATCH_DATA_DIR": "/override/data"
+  },
+  "expect": {
+   "prefix": "STOPWATCH",
+   "dirs": {
+    "data": "/override/data",
+    "config": "/home/user/.config/com.slashbuilder.demo.stopwatch",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.stopwatch",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.stopwatch",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.stopwatch/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "scratch-on-macos",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "macos",
+  "home": "/Users/user",
+  "env": {
+   "APP_CONTEXT_SCRATCH": "/tmp/scratch"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/tmp/scratch/com.slashbuilder.demo.calc/data",
+    "config": "/tmp/scratch/com.slashbuilder.demo.calc/config",
+    "state": "/tmp/scratch/com.slashbuilder.demo.calc/state",
+    "cache": "/tmp/scratch/com.slashbuilder.demo.calc/cache",
+    "runtime": "/tmp/scratch/com.slashbuilder.demo.calc/runtime"
+   },
+   "roster": "/tmp/scratch/roster",
+   "scratch": true,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "scratch-on-windows-needs-no-env",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "windows",
+  "home": "C:\\Users\\user",
+  "env": {
+   "APP_CONTEXT_SCRATCH": "C:/s"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "C:/s/com.slashbuilder.demo.calc/data",
+    "config": "C:/s/com.slashbuilder.demo.calc/config",
+    "state": "C:/s/com.slashbuilder.demo.calc/state",
+    "cache": "C:/s/com.slashbuilder.demo.calc/cache",
+    "runtime": "C:/s/com.slashbuilder.demo.calc/runtime"
+   },
+   "roster": "C:/s/roster",
+   "scratch": true,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "scratch-plus-override",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "APP_CONTEXT_SCRATCH": "/tmp/s",
+   "CALC_CONFIG_DIR": "/etc/calc"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/tmp/s/com.slashbuilder.demo.calc/data",
+    "config": "/etc/calc",
+    "state": "/tmp/s/com.slashbuilder.demo.calc/state",
+    "cache": "/tmp/s/com.slashbuilder.demo.calc/cache",
+    "runtime": "/tmp/s/com.slashbuilder.demo.calc/runtime"
+   },
+   "roster": "/tmp/s/roster",
+   "scratch": true,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "roster-override-beats-scratch",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "APP_CONTEXT_SCRATCH": "/tmp/s",
+   "APP_CONTEXT_ROSTER_DIR": "/shared/roster"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/tmp/s/com.slashbuilder.demo.calc/data",
+    "config": "/tmp/s/com.slashbuilder.demo.calc/config",
+    "state": "/tmp/s/com.slashbuilder.demo.calc/state",
+    "cache": "/tmp/s/com.slashbuilder.demo.calc/cache",
+    "runtime": "/tmp/s/com.slashbuilder.demo.calc/runtime"
+   },
+   "roster": "/shared/roster",
+   "scratch": true,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "prefix-from-manifest",
+  "manifest": {
+   "id": "com.slashbuilder.demo.minesweeper",
+   "name": "Demo",
+   "version": "0.1.0",
+   "envPrefix": "MINES"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "MINES_MODE": "mock",
+   "MINESWEEPER_MODE": "real"
+  },
+  "expect": {
+   "prefix": "MINES",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.minesweeper",
+    "config": "/home/user/.config/com.slashbuilder.demo.minesweeper",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.minesweeper",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.minesweeper",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.minesweeper/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "mock"
+  }
+ },
+ {
+  "name": "mode-app-beats-global",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "APP_CONTEXT_MODE": "mock",
+   "CALC_MODE": "real"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "mode-global",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "APP_CONTEXT_MODE": "mock"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "mock"
+  }
+ },
+ {
+  "name": "bad-mode",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "CALC_MODE": "fake"
+  },
+  "error": "bad-mode"
+ },
+ {
+  "name": "empty-means-unset",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "CALC_MODE": "",
+   "XDG_DATA_HOME": "",
+   "CALC_DATA_DIR": "",
+   "APP_CONTEXT_SCRATCH": ""
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "runtime-follows-xdg-state-when-no-runtime-dir",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "XDG_STATE_HOME": "/x/state"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/x/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/x/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "root-base-is-not-doubled",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "XDG_DATA_HOME": "/"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "linux-keeps-trailing-backslash",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "XDG_DATA_HOME": "/x/data\\"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/x/data\\/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "windows-trims-either-separator",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "windows",
+  "home": "C:\\Users\\user",
+  "env": {
+   "LOCALAPPDATA": "C:\\L/",
+   "APPDATA": "C:\\A\\",
+   "TEMP": "C:\\T/"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "C:\\L\\com.slashbuilder.demo.calc\\data",
+    "config": "C:\\A\\com.slashbuilder.demo.calc",
+    "state": "C:\\L\\com.slashbuilder.demo.calc\\state",
+    "cache": "C:\\L\\com.slashbuilder.demo.calc\\cache",
+    "runtime": "C:\\T\\com.slashbuilder.demo.calc"
+   },
+   "roster": "C:\\T\\app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "override-is-verbatim",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "CALC_DATA_DIR": "/o/data/"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/o/data/",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ },
+ {
+  "name": "garbage-global-mode-ignored-when-app-mode-set",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "CALC_MODE": "mock",
+   "APP_CONTEXT_MODE": "garbage"
+  },
+  "expect": {
+   "prefix": "CALC",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.calc",
+    "config": "/home/user/.config/com.slashbuilder.demo.calc",
+    "state": "/home/user/.local/state/com.slashbuilder.demo.calc",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.calc",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.calc/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "mock"
+  }
+ },
+ {
+  "name": "bad-mode-before-missing-env",
+  "manifest": {
+   "id": "com.slashbuilder.demo.calc",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "windows",
+  "home": "C:\\Users\\user",
+  "env": {
+   "CALC_MODE": "fake"
+  },
+  "error": "bad-mode"
+ },
+ {
+  "name": "hyphen-in-id",
+  "manifest": {
+   "id": "com.slashbuilder.demo.render-queue",
+   "name": "Demo",
+   "version": "0.1.0"
+  },
+  "platform": "linux",
+  "home": "/home/user",
+  "env": {
+   "RENDER_QUEUE_STATE_DIR": "/q/state"
+  },
+  "expect": {
+   "prefix": "RENDER_QUEUE",
+   "dirs": {
+    "data": "/home/user/.local/share/com.slashbuilder.demo.render-queue",
+    "config": "/home/user/.config/com.slashbuilder.demo.render-queue",
+    "state": "/q/state",
+    "cache": "/home/user/.cache/com.slashbuilder.demo.render-queue",
+    "runtime": "/home/user/.local/state/com.slashbuilder.demo.render-queue/run"
+   },
+   "roster": "/tmp/app-context-roster",
+   "scratch": false,
+   "mode": "real"
+  }
+ }
+]

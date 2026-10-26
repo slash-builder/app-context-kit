@@ -1,0 +1,162 @@
+[
+  {
+    "name": "linux-xdg",
+    "kind": "real-context",
+    "inputs": {
+      "platform": "linux",
+      "home": "/tmp/app-context-snapshot-fixture/home-linux",
+      "env": {
+        "XDG_RUNTIME_DIR": "/tmp/app-context-snapshot-fixture/run-linux"
+      }
+    },
+    "snapshot": {
+      "schema": 1,
+      "appId": "com.slashbuilder.demo.notes-rust",
+      "instance": "18defd4f",
+      "mode": "real",
+      "scratch": false,
+      "dirs": {
+        "data": "/tmp/app-context-snapshot-fixture/home-linux/.local/share/com.slashbuilder.demo.notes-rust",
+        "config": "/tmp/app-context-snapshot-fixture/home-linux/.config/com.slashbuilder.demo.notes-rust",
+        "state": "/tmp/app-context-snapshot-fixture/home-linux/.local/state/com.slashbuilder.demo.notes-rust",
+        "cache": "/tmp/app-context-snapshot-fixture/home-linux/.cache/com.slashbuilder.demo.notes-rust",
+        "runtime": "/tmp/app-context-snapshot-fixture/run-linux/com.slashbuilder.demo.notes-rust"
+      },
+      "roster": "/tmp/app-context-snapshot-fixture/run-linux/app-context-roster"
+    }
+  },
+  {
+    "name": "macos",
+    "kind": "real-context",
+    "inputs": {
+      "platform": "macos",
+      "home": "/tmp/app-context-snapshot-fixture/home-macos",
+      "env": {
+        "TMPDIR": "/tmp/app-context-snapshot-fixture/tmp-macos"
+      }
+    },
+    "snapshot": {
+      "schema": 1,
+      "appId": "com.slashbuilder.demo.notes-rust",
+      "instance": "ec77cf23",
+      "mode": "real",
+      "scratch": false,
+      "dirs": {
+        "data": "/tmp/app-context-snapshot-fixture/home-macos/Library/Application Support/com.slashbuilder.demo.notes-rust/data",
+        "config": "/tmp/app-context-snapshot-fixture/home-macos/Library/Preferences/com.slashbuilder.demo.notes-rust",
+        "state": "/tmp/app-context-snapshot-fixture/home-macos/Library/Application Support/com.slashbuilder.demo.notes-rust/state",
+        "cache": "/tmp/app-context-snapshot-fixture/home-macos/Library/Caches/com.slashbuilder.demo.notes-rust",
+        "runtime": "/tmp/app-context-snapshot-fixture/tmp-macos/com.slashbuilder.demo.notes-rust"
+      },
+      "roster": "/tmp/app-context-snapshot-fixture/tmp-macos/app-context-roster"
+    }
+  },
+  {
+    "name": "windows-shaped",
+    "kind": "built-from-resolve",
+    "inputs": {
+      "platform": "windows",
+      "home": "C:\\Users\\alice",
+      "env": {
+        "LOCALAPPDATA": "C:\\Users\\alice\\AppData\\Local",
+        "APPDATA": "C:\\Users\\alice\\AppData\\Roaming",
+        "TEMP": "C:\\Users\\alice\\AppData\\Local\\Temp"
+      }
+    },
+    "snapshot": {
+      "schema": 1,
+      "appId": "com.slashbuilder.demo.notes-rust",
+      "instance": "c0ffee01",
+      "mode": "real",
+      "scratch": false,
+      "dirs": {
+        "data": "C:\\Users\\alice\\AppData\\Local\\com.slashbuilder.demo.notes-rust\\data",
+        "config": "C:\\Users\\alice\\AppData\\Roaming\\com.slashbuilder.demo.notes-rust",
+        "state": "C:\\Users\\alice\\AppData\\Local\\com.slashbuilder.demo.notes-rust\\state",
+        "cache": "C:\\Users\\alice\\AppData\\Local\\com.slashbuilder.demo.notes-rust\\cache",
+        "runtime": "C:\\Users\\alice\\AppData\\Local\\Temp\\com.slashbuilder.demo.notes-rust"
+      },
+      "roster": "C:\\Users\\alice\\AppData\\Local\\Temp\\app-context-roster"
+    }
+  },
+  {
+    "name": "mock",
+    "kind": "real-context",
+    "inputs": {
+      "platform": "linux",
+      "home": "/tmp/app-context-snapshot-fixture/home-mock",
+      "env": {
+        "APP_CONTEXT_MODE": "mock",
+        "XDG_RUNTIME_DIR": "/tmp/app-context-snapshot-fixture/run-mock"
+      }
+    },
+    "snapshot": {
+      "schema": 1,
+      "appId": "com.slashbuilder.demo.notes-rust",
+      "instance": "66ee97a5",
+      "mode": "mock",
+      "scratch": false,
+      "dirs": {
+        "data": "/tmp/app-context-snapshot-fixture/home-mock/.local/share/com.slashbuilder.demo.notes-rust",
+        "config": "/tmp/app-context-snapshot-fixture/home-mock/.config/com.slashbuilder.demo.notes-rust",
+        "state": "/tmp/app-context-snapshot-fixture/home-mock/.local/state/com.slashbuilder.demo.notes-rust",
+        "cache": "/tmp/app-context-snapshot-fixture/home-mock/.cache/com.slashbuilder.demo.notes-rust",
+        "runtime": "/tmp/app-context-snapshot-fixture/run-mock/com.slashbuilder.demo.notes-rust"
+      },
+      "roster": "/tmp/app-context-snapshot-fixture/run-mock/app-context-roster"
+    }
+  },
+  {
+    "name": "scratch",
+    "kind": "real-context",
+    "inputs": {
+      "platform": "linux",
+      "home": "/nonexistent",
+      "env": {
+        "APP_CONTEXT_SCRATCH": "/tmp/app-context-snapshot-fixture/scratch"
+      }
+    },
+    "snapshot": {
+      "schema": 1,
+      "appId": "com.slashbuilder.demo.notes-rust",
+      "instance": "8242f49b",
+      "mode": "real",
+      "scratch": true,
+      "dirs": {
+        "data": "/tmp/app-context-snapshot-fixture/scratch/com.slashbuilder.demo.notes-rust/data",
+        "config": "/tmp/app-context-snapshot-fixture/scratch/com.slashbuilder.demo.notes-rust/config",
+        "state": "/tmp/app-context-snapshot-fixture/scratch/com.slashbuilder.demo.notes-rust/state",
+        "cache": "/tmp/app-context-snapshot-fixture/scratch/com.slashbuilder.demo.notes-rust/cache",
+        "runtime": "/tmp/app-context-snapshot-fixture/scratch/com.slashbuilder.demo.notes-rust/runtime"
+      },
+      "roster": "/tmp/app-context-snapshot-fixture/scratch/roster"
+    }
+  },
+  {
+    "name": "scratch-with-dir-override",
+    "kind": "real-context",
+    "inputs": {
+      "platform": "linux",
+      "home": "/nonexistent",
+      "env": {
+        "APP_CONTEXT_SCRATCH": "/tmp/app-context-snapshot-fixture/scratch2",
+        "NOTES_RUST_DATA_DIR": "/tmp/app-context-snapshot-fixture/elsewhere/data"
+      }
+    },
+    "snapshot": {
+      "schema": 1,
+      "appId": "com.slashbuilder.demo.notes-rust",
+      "instance": "903d9aa8",
+      "mode": "real",
+      "scratch": true,
+      "dirs": {
+        "data": "/tmp/app-context-snapshot-fixture/elsewhere/data",
+        "config": "/tmp/app-context-snapshot-fixture/scratch2/com.slashbuilder.demo.notes-rust/config",
+        "state": "/tmp/app-context-snapshot-fixture/scratch2/com.slashbuilder.demo.notes-rust/state",
+        "cache": "/tmp/app-context-snapshot-fixture/scratch2/com.slashbuilder.demo.notes-rust/cache",
+        "runtime": "/tmp/app-context-snapshot-fixture/scratch2/com.slashbuilder.demo.notes-rust/runtime"
+      },
+      "roster": "/tmp/app-context-snapshot-fixture/scratch2/roster"
+    }
+  }
+]

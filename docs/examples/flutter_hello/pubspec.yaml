@@ -1,0 +1,24 @@
+name: hello
+description: A Flutter desktop app built on the App Context Kit. Example from docs/GETTING-STARTED.md.
+publish_to: none
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  app_context_kit:
+    path: ../../../dart/app_context_kit
+  app_context_kit_flutter:
+    path: ../../../dart/app_context_kit_flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - app.json

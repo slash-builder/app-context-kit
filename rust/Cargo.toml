@@ -1,0 +1,22 @@
+[package]
+name = "slashbuilder-app-context-kit"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.78"
+description = "The root namespace for one running app: identity, directories, settings, roster, a resource-broker session and opt-in peers"
+license = "Apache-2.0"
+repository = "https://github.com/slash-builder/app-context-kit"
+homepage = "https://github.com/slash-builder/app-context-kit"
+readme = "README.md"
+keywords = ["app", "context", "settings", "directories", "kit"]
+categories = ["config", "filesystem"]
+include = ["src/**/*", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[lib]
+name = "app_context_kit"
+
+[dependencies]
+serde = "1"
+serde_json = "1"
+# Timestamps are UTC internally. Needed for the roster's ISO-8601 heartbeat times.
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }

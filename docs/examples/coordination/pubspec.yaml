@@ -1,0 +1,10 @@
+name: coordination_examples
+description: "Runnable examples for docs/COORDINATION-GUIDE.md. Not published."
+publish_to: none
+environment:
+  sdk: ^3.0.0
+dependencies:
+  app_context_kit:
+    path: ../../../dart/app_context_kit
+dev_dependencies:
+  test: ^1.24.0

@@ -1,0 +1,161 @@
+# CI for a public SlashBuilder Kit. Standard: context/rust-and-crates-io-standard.md
+# The Rust crate is in rust/, so the cargo jobs run there; the Dart packages are tested by the dart jobs below.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 5 * * 1"   # weekly: catches new advisories and toolchain changes
+
+permissions:
+  contents: read           # least privilege; jobs that need more declare it themselves
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: rustup toolchain install stable --profile minimal --component rustfmt,clippy
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
+        with:
+          workspaces: rust
+      - run: cargo fmt --all --check
+      - run: cargo clippy --all-targets --all-features --locked -- -D warnings
+      - run: cargo doc --no-deps --all-features --locked
+        env:
+          RUSTDOCFLAGS: -D warnings
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm, macos-15, windows-2025]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: rustup toolchain install stable --profile minimal
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
+        with:
+          workspaces: rust
+      - run: cargo test --all-features --locked
+      - run: cargo test --no-default-features --locked
+
+  msrv:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Read rust-version from Cargo.toml
+        id: msrv
+        run: echo "version=$(cargo metadata --no-deps --format-version 1 | python3 -c 'import sys,json; print(json.load(sys.stdin)["packages"][0]["rust_version"])')" >> "$GITHUB_OUTPUT"
+      - run: rustup toolchain install "${{ steps.msrv.outputs.version }}" --profile minimal
+      - run: cargo +${{ steps.msrv.outputs.version }} check --all-features --locked
+
+  supply-chain:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: taiki-e/install-action@8cca0918f8471c33515202b73f56ab27f2bed283 # v2.87.29
+        with:
+          tool: cargo-deny
+      - run: cargo deny check          # advisories, licenses, bans, sources (deny.toml)
+
+  semver:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: rustup toolchain install stable --profile minimal
+      - uses: taiki-e/install-action@8cca0918f8471c33515202b73f56ab27f2bed283 # v2.87.29
+        with:
+          tool: cargo-semver-checks
+      - name: Is there a published version to compare against?
+        id: baseline
+        run: |
+          set -eu
+          name="$(cargo metadata --no-deps --format-version 1 | python3 -c 'import sys,json; print(json.load(sys.stdin)["packages"][0]["name"])')"
+          code="$(curl -s -o /dev/null -w '%{http_code}' -A 'slash-builder-ci (https://github.com/slash-builder/app-context-kit)' "https://crates.io/api/v1/crates/$name")"
+          echo "crates.io says $code for $name"
+          if [ "$code" = 200 ]; then echo "published=true" >> "$GITHUB_OUTPUT"; else echo "published=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.baseline.outputs.published == 'true'
+        run: cargo semver-checks       # compares against the latest version on crates.io; nothing to compare before the first release
+
+  hygiene:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: No internal references, private submodules or agent context in a public repo
+        run: |
+          set -eu
+          if git ls-files | grep -E '(^|/)(AGENT\.md|CLAUDE\.md|\.gitmodules)$|^\.claude/'; then echo "forbidden file tracked"; exit 1; fi
+          if git grep -n -I -E 'softsurve\.com|192\.168\.[0-9]+\.[0-9]+|\bjbot\b|dlockamy/(vault|agents|skills|context)|lockamy-studios/' -- . ':!rust/deny.toml' ':!.github/workflows/ci.yml'; then echo "internal reference found"; exit 1; fi
+
+  dart:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
+      - name: Core package (pure Dart) - analyze and test (includes the shared conformance fixtures)
+        working-directory: dart/app_context_kit
+        run: |
+          dart pub get
+          dart analyze --fatal-infos
+          dart test
+
+  flutter:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
+        with:
+          channel: stable
+      - name: Flutter companion - analyze and test
+        working-directory: dart/app_context_kit_flutter
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
