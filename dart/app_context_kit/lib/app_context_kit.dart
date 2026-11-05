@@ -4,6 +4,8 @@ library;
 export 'src/app_context.dart';
 export 'src/config_store.dart';
 export 'src/json_file.dart';
+export 'src/log/debug_log.dart';
+export 'src/log/log_sink.dart';
 export 'src/manifest.dart';
 export 'src/resolve.dart';
 export 'src/roster.dart';
