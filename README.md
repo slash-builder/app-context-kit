@@ -60,6 +60,7 @@ The Kit finds the other copies, checks they belong to the same account and the s
 | **Roster** | A presence file per running copy, so apps can see who else is running | `dart/app_context_kit` |
 | **Venue session** | One interface to a resource broker that hides "real", "absent" and "fake" | `dart/app_context_kit` |
 | **Peers** (opt-in) | Find, connect and route between copies of the same app; the app supplies the hook | `dart/app_context_kit` |
+| **Debug log** (Dart only, spike) | An app-wide log, off by default, with a field allow-list and scrubbing, in `<state>/logs`; a `LogSink` interface for Kits that need to leave a trail | `dart/app_context_kit` (`lib/src/log`), switch notifier and app start/stop lines in the companion |
 | **Flutter companion** | Clean exit, manifest loading, mode badge, notes banner, peers indicator, test helpers | `dart/app_context_kit_flutter` |
 | **Rust implementation** | The same manifest, resolution and settings rules, checked by the same fixtures. No peers, and no remote Venue session in this tree (local and fake sessions only) | `rust/` |
 
@@ -121,6 +122,7 @@ Said plainly, because a project that hides these is not worth trusting.
 * **"Same app" is a convention, not a proof.** Until capabilities are signed, an app id is a string any program can type. The Kit scopes by account and app id, but it does not authenticate. Do not treat peers as trusted.
 * **macOS sandbox.** Sandboxed apps cannot share a roster directory without a special entitlement. [`docs/PLATFORMS.md`](docs/PLATFORMS.md) has the table.
 * **Registering an app with the resource broker is manual** (four steps, by an operator). The Kit deliberately does not do it for the app.
+* **The debug log is Dart only and has no spec or fixtures yet.** It was moved here from Courier (spike, 2026-11-05) because the studio plan puts the app log in this Kit. It is not in `spec/APP-CONTEXT.md`, so the rule above ("both implementations pass the same fixtures") does not cover it: its scrubbing and line format would need a spec section and shared fixtures before a Rust app could rely on the same behaviour. Whether a log belongs in this Kit at all is an open question for the Kit's owner.
 * **The name and the scope are unsettled.** Nothing here is a ruling.
 
 ## Community
