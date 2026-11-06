@@ -122,6 +122,11 @@ enum SecretMigrationOutcome {
   /// downgrade, an edit by an older version, and an upgrade again.
   secureWins,
 
+  /// The secret store is unavailable and there is no plaintext copy either:
+  /// nothing is known about this secret. The caller must not write to the store
+  /// this run (it cannot see what is in there) and must tell the person.
+  unavailable,
+
   /// The secret store is unavailable. The plaintext value is KEPT (so the identity
   /// is not lost) and returned for this run; the caller must tell the person.
   keptPlaintextUnavailable,
@@ -149,12 +154,14 @@ class SecretMigrationResult {
   /// True when a secret still sits in plaintext, or could not be secured: the app
   /// must warn the person visibly.
   bool get needsAttention =>
+      outcome == SecretMigrationOutcome.unavailable ||
       outcome == SecretMigrationOutcome.keptPlaintextUnavailable ||
       outcome == SecretMigrationOutcome.keptPlaintextUnverified ||
       outcome == SecretMigrationOutcome.plaintextNotRemoved;
 
   /// False only when the secret store could not be reached.
   bool get storeReachable =>
+      outcome != SecretMigrationOutcome.unavailable &&
       outcome != SecretMigrationOutcome.keptPlaintextUnavailable;
 
   @override
@@ -167,7 +174,9 @@ class SecretMigrationResult {
 ///  1. Read [store]. If it cannot be reached and [legacyValue] exists, KEEP the
 ///     plaintext and report it ([SecretMigrationOutcome.keptPlaintextUnavailable]):
 ///     losing the identity because the keyring is down would be worse than a
-///     warning.
+///     warning. With no plaintext either the outcome is
+///     [SecretMigrationOutcome.unavailable]: nothing is known, and the caller
+///     must not write to a store it could not read.
 ///  2. If [store] already holds a value it is the store of record: a leftover
 ///     plaintext copy is removed (and counted as [SecretMigrationOutcome.moved] when
 ///     equal, [SecretMigrationOutcome.secureWins] when different).
@@ -192,7 +201,7 @@ Future<SecretMigrationResult> migrateSecret({
     current = await store.read(key);
   } on SecretStoreUnavailable {
     return legacy == null
-        ? const SecretMigrationResult(SecretMigrationOutcome.absent, null)
+        ? const SecretMigrationResult(SecretMigrationOutcome.unavailable, null)
         : SecretMigrationResult(
             SecretMigrationOutcome.keptPlaintextUnavailable, legacy);
   }

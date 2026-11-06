@@ -82,11 +82,14 @@ void main() {
     expect(store.values, isEmpty);
   });
 
-  test('secure store down and nothing stored: absent, not an error', () async {
+  test('secure store down and no plaintext: unavailable (nothing is known)',
+      () async {
     store.unavailable = true;
     final r = await run();
-    expect(r.outcome, SecretMigrationOutcome.absent);
+    expect(r.outcome, SecretMigrationOutcome.unavailable);
     expect(r.value, isNull);
+    expect(r.storeReachable, isFalse);
+    expect(r.needsAttention, isTrue);
   });
 
   test('a write that does not stick keeps the plaintext', () async {
