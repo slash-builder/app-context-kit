@@ -34,13 +34,24 @@ class FlutterSecureSecretStore implements SecretStore {
   final Duration timeout;
 
   // `unlocked_this_device`: readable while the device is unlocked, never synced
-  // to iCloud Keychain and not restored to another device from a backup.
+  // to iCloud Keychain and not restored to another device from a backup (iOS).
+  //
+  // The default plugin configuration. On macOS it uses the LEGACY (file-based)
+  // keychain, `usesDataProtectionKeychain: false`: the data-protection keychain
+  // the plugin defaults to needs the `keychain-access-groups` entitlement, which
+  // is a restricted entitlement that needs a provisioning profile, and a
+  // Developer ID build signed with an entitlements file alone (no profile) gets
+  // errSecMissingEntitlement (-34018) from it; that would read as "keyring
+  // unavailable" for every user. NOT verified on a signed build from this Kit's
+  // tests (no native code runs there): an app must check once that its signed
+  // build stores and reads back a secret.
   static const _defaultStorage = FlutterSecureStorage(
     iOptions: IOSOptions(
       accessibility: KeychainAccessibility.unlocked_this_device,
     ),
     mOptions: MacOsOptions(
       accessibility: KeychainAccessibility.unlocked_this_device,
+      usesDataProtectionKeychain: false,
     ),
   );
 
