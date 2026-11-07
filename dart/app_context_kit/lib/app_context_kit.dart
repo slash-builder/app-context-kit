@@ -9,6 +9,7 @@ export 'src/log/log_sink.dart';
 export 'src/manifest.dart';
 export 'src/resolve.dart';
 export 'src/roster.dart';
+export 'src/secret_store.dart';
 export 'src/session_settings.dart';
 export 'src/venue/transport.dart';
 export 'src/venue/venue_session.dart';
