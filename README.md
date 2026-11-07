@@ -62,6 +62,7 @@ The Kit finds the other copies, checks they belong to the same account and the s
 | **Peers** (opt-in) | Find, connect and route between copies of the same app; the app supplies the hook | `dart/app_context_kit` |
 | **Debug log** (Dart only, spike) | An app-wide log, off by default, with a field allow-list and scrubbing, in `<state>/logs`; a `LogSink` interface for Kits that need to leave a trail | `dart/app_context_kit` (`lib/src/log`), switch notifier and app start/stop lines in the companion |
 | **Flutter companion** | Clean exit, manifest loading, mode badge, notes banner, peers indicator, test helpers | `dart/app_context_kit_flutter` |
+| **Secret store** | The `SecretStore` interface and `migrateSecret` (plaintext to secret store, verified) are in the core; the platform backend `FlutterSecureSecretStore` (Keychain, Keystore, libsecret) is its own package so an app that keeps no secret does not link the plugin | `dart/app_context_kit` (interface), `dart/app_context_kit_secure` (backend) |
 | **Rust implementation** | The same manifest, resolution and settings rules, checked by the same fixtures. No peers, and no remote Venue session in this tree (local and fake sessions only) | `rust/` |
 
 One spec, [`spec/APP-CONTEXT.md`](spec/APP-CONTEXT.md), is the contract. **Two independent implementations (Dart and Rust) must both pass the same 61 fixtures** in [`spec/conformance/`](spec/conformance/). That was not decoration: the second implementation found about a dozen behaviours the first one had silently decided differently.
@@ -77,7 +78,7 @@ These are the numbers from the tests and measurements made while the Kit was bui
 * **Shared code instead of copied code.** Gap code (the helpers each app wrote itself because the Kit lacked them) across the six apps: **727 lines** at the start, **330** after the first migration, **777** after wiring in coordination (it went *up*), and **164** after the repeated parts moved into the Kit. Every app's `main.dart` is 5 to 11 lines. The lesson: *build a Kit piece when the second app copies it, not before.*
 * **Coordination between copies** (macOS debug builds, two real copies): found each other in 289 to 470 ms; a 300 KB note converged in about 145 ms; a killed copy was reported lost in about 3.5 s.
 * **The hook was enough for a signal and a handoff, and only just enough for live play.** For sync it is a 22-line shell around about 700 lines of app code, because the Kit gives no acknowledgement, large transfer, replay or liveness tick. [Coordination guide](docs/COORDINATION-GUIDE.md) explains what to do instead.
-* **Tests (this repository):** Dart core 365 passed (7 skipped: five need a real Venue daemon, one is the pinned-TLS group, one is Linux-only), Flutter companion 82, Rust crate 83 unit + 2 conformance + 5 host-OS + 4 snapshot-conformance. The test counts of the six demo apps are in the Kit Book repository.
+* **Tests (this repository):** Dart core 426 passed (7 skipped: five need a real Venue daemon, one is the pinned-TLS group, one is Linux-only), Flutter companion 88, secret store package 8, Rust crate 83 unit + 2 conformance + 5 host-OS + 4 snapshot-conformance. The test counts of the six demo apps are in the Kit Book repository.
 
 ## Documentation
 
@@ -105,6 +106,9 @@ cd dart/app_context_kit && dart pub get && dart test
 
 # the Flutter companion
 cd dart/app_context_kit_flutter && flutter test
+
+# the platform secret store
+cd dart/app_context_kit_secure && flutter test
 
 # the Rust implementation
 cd rust && cargo test

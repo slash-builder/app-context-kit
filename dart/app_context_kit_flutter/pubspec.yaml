@@ -12,9 +12,6 @@ dependencies:
     sdk: flutter
   app_context_kit:
     path: ../app_context_kit
-  # The platform secret store behind FlutterSecureSecretStore (Keychain, Keystore,
-  # libsecret). Same constraint as the Glue Host and Dispatcher Wire Kits use.
-  flutter_secure_storage: ^10.3.4
   # Only lib/testing.dart imports this; an app that never imports that file does not link it into a release build.
   flutter_test:
     sdk: flutter

@@ -5,7 +5,7 @@
 /// `shared_preferences` (a plain XML/JSON file on every desktop platform). It belongs
 /// in the platform's secret store: Keychain on macOS and iOS, Keystore on Android,
 /// the Secret Service (libsecret) on Linux. This file is the seam an app programs
-/// against; `app_context_kit_flutter` ships the `flutter_secure_storage` backend
+/// against; `app_context_kit_secure` ships the `flutter_secure_storage` backend
 /// (`FlutterSecureSecretStore`) and [InMemorySecretStore] is the fake for tests.
 ///
 /// THE RULES a [SecretStore] follows, and that [migrateSecret] relies on:

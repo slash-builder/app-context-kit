@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:app_context_kit/app_context_kit.dart';
-import 'package:app_context_kit_flutter/app_context_kit_flutter.dart';
+import 'package:app_context_kit_secure/app_context_kit_secure.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';

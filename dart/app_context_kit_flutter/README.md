@@ -67,5 +67,7 @@ await kit.relaunch(); // closes the context (onClose hooks run), reopens on the 
 * **No mobile exit story.** Window close, Quit and signals are desktop events. On mobile the only hook is `onDetach`, which closes
   best-effort; there is no guarantee the OS gives it time.
 * **No force-exit on a second signal and no close timeout.** A hung `onClose` hook is a bug to fix; `SIGKILL` is the escape.
+* **No secret store backend.** The `SecretStore` interface is in `app_context_kit`; `FlutterSecureSecretStore` is in `app_context_kit_secure`,
+  so this package does not link `flutter_secure_storage`.
 * **No state management, routing or theming**, and nothing that interprets an app's payload.
 * **No window-level test.** The exit paths are tested through injected sources; a real window close needs a built app.

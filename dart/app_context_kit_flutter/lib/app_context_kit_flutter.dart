@@ -7,7 +7,6 @@ library;
 export 'src/app_context_scope.dart';
 export 'src/app_context_kit.dart';
 export 'src/exit_coordinator.dart';
-export 'src/flutter_secure_secret_store.dart';
 export 'src/log/app_log.dart';
 export 'src/mode_badge.dart';
 export 'src/notes_banner.dart';

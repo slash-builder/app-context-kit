@@ -159,3 +159,9 @@ jobs:
           flutter pub get
           flutter analyze
           flutter test
+      - name: Secret store package - analyze and test
+        working-directory: dart/app_context_kit_secure
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test

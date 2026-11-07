@@ -1,0 +1,22 @@
+name: app_context_kit_secure
+description: "App Context Kit (platform secret store): FlutterSecureSecretStore, the SecretStore backend over flutter_secure_storage (Keychain, Keystore, libsecret)."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  app_context_kit:
+    path: ../app_context_kit
+  # The platform secret store behind FlutterSecureSecretStore (Keychain, Keystore,
+  # libsecret). Same constraint as the Glue Host and Dispatcher Wire Kits use.
+  flutter_secure_storage: ^10.3.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
