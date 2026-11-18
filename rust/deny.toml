@@ -8,6 +8,7 @@ yanked = "deny"            # a dependency that was yanked is a build we should n
 # Vulnerabilities and yanked crates are always errors. A crate flagged "unmaintained" is tracked debt: it is an
 # error here until the Kit lists it below WITH a reason and a review date, so it can never be silently ignored.
 ignore = [
+  { id = "RUSTSEC-2026-0543", reason = "chrono is flagged unmaintained (a notice; no vulnerability is reported). Move to time or jiff when convenient. Reviewed 2026-11-17; re-review by 2027-02-16.", },
   # { id = "RUSTSEC-2024-0449", reason = "unsafe-libyaml via serde_yaml; replace the YAML dependency before 1.0", },
 ]
 
